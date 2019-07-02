@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Remove Duplicates Function</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        let removeDups=(arr)=>{
+            let count;
+            let res=[];
+            for(let i=0;i<arr.length;i++){
+                for(let j=i+1;j<arr.length;j++){
+                    if(arr[i]!=arr[j]){
+                        continue;
+                    }
+                    else{
+                        count++;
+                    }
+                }
+                if(!count){
+                    res.push(i);
+                }
+            }
+            return res;
+        }
+
+        alert(removeDups([1, 0, 1, 0]));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

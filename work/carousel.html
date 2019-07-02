@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Carousel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        var i=0;
+        function myFunction() {
+            setInterval(function () {
+                    if (i == 0)
+                        document.getElementById("image").innerHTML =
+                        "<img src='C:/Users/atul.singh/Desktop/work/carousel/la.jpg'>";
+                    if (i == 1)
+                        document.getElementById("image").innerHTML =
+                        "<img src='C:/Users/atul.singh/Desktop/work/carousel/chicago.jpg'>";
+                    if (i == 2){
+                        document.getElementById("image").innerHTML =
+                        "<img src='C:/Users/atul.singh/Desktop/work/carousel/ny.jpg'>";
+                        i=-1;
+                    }
+                    i++;
+            }, 2000);
+        }
+        // let carousel = () => {
+        //     for (let i = 0; i < 3; i++) {
+        //         if (i == 0)
+        //             document.getElementById("image").innerHTML =
+        //             "<img src='C:/Users/atul.singh/Desktop/work/carousel/la.jpg'>";
+        //         if (i == 1)
+        //             document.getElementById("image").innerHTML =
+        //             "<img src='C:/Users/atul.singh/Desktop/work/carousel/chicago.jpg'>";
+        //         if (i == 2)
+        //             document.getElementById("image").innerHTML =
+        //             "<img src='C:/Users/atul.singh/Desktop/work/carousel/ny.jpg'>";
+        //     }
+        // }
+    </script>
+</head>
+
+<body onload="myFunction()">
+    <div id="image">
+    </div>
+</body>
+
+</html>

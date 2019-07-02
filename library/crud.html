@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table,
+        td {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 100px;
+        }
+
+        input {
+            width: 100px;
+            margin-left: -5px;
+            margin-top: 15px;
+        }
+
+        .temp {
+            margin-left: 0px;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("Button").disabled = true;
+        }
+        myObj = {
+            FName: "",
+            LName: "",
+            Age: "",
+            Gender: "",
+        };
+        
+        let count = 1;
+        function myFunction() {
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(count);
+            let fields = [];
+            let cell = [];
+            fields = document.getElementsByClassName("field");
+            let len = fields.length;
+            len++;
+            for (let i = 0; i < len; i++) {
+                cell[i + 1] = row.insertCell(i);
+            }
+
+            for (let i = 1; i <= len; i++) {
+                if (i == len) {
+                    cell[i].innerHTML = "<input type='checkbox' class='checkbox'>";
+                } else {
+                    cell[i].innerHTML = fields[i - 1].value;
+                    fields[i - 1].value = "";
+                }
+            }
+            count++;
+            myObj = {
+                FName: "",
+                LName: "",
+                Age: "",
+                Gender: "",
+            };
+            document.getElementById("Button").disabled = true;
+        }
+
+        function isEmpty(e) {
+            myObj[e.target.id] = e.target.value;
+            let size = Object.keys(myObj).length;
+            let temp = 0;
+            let arr = Object.values(myObj);
+            arr.forEach(element => {
+                if (element != "")
+                    temp++;
+            });
+
+            if (temp == size) {
+                document.getElementById("Button").disabled = false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <table id="myTable">
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Age</td>
+            <td>Gender</td>
+            <td>Select</td>
+        </tr>
+    </table>
+    <input onchange="isEmpty(event)" class="temp field" id="FName" placeholder="Enter F.N." required>
+    <input onchange="isEmpty(event)" class="field" placeholder="Enter L.N." id="LName">
+    <input onchange="isEmpty(event)" class="field" type="number" min=0 oninput="validity.valid||(value='');" id="Age"
+        placeholder="Enter Age">
+    <input onchange="isEmpty(event)" class="field" id="Gender" placeholder="Enter M/F">
+
+    <button id="Button" onclick="myFunction()">Add</button>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>
+
+    </title>
+    <script>
+        function fun1() {
+            var c = '';
+            var w = document.getElementById("head").innerText;
+            var x = document.getElementById("i1").value;
+            var y = document.getElementById("i2").value;
+            for (var i = 0; i < y; i++) {
+                c = c + "<" + x + ">" + w + "<" + x + ">" + "<br>"
+            }
+            document.getElementById("demo").innerHTML = c
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h3 id="head">Uddeshya</h3>
+    </header>
+    <div style="display: inline;">
+        String: <input id="i1" type="text" name= "StringValue">
+        Number: <input id="i2" type="Number" name= "nunericValue">
+    </div>
+    <button type="submit" onclick="fun1()">Generate</button>
+    <p id="demo"></p>
+</body>
+
+</html>

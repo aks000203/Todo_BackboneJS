@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  margin-right: 40px;
+  width: 80%;
+
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.add{
+    margin-right: 20%;
+}
+
+</style>
+</head>
+<body>
+
+<h2>HTML Table</h2>
+
+<table style="margin-right: 40px" id="mytable">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Father name</th>
+    <th>Age</th>
+    <th>Gender</th>
+  </tr>
+  <tr>
+        <td><input type="text" class="field" id="name"></td>
+        <td><input type="text" class="field" id="last"></td>
+        <td><input type="text" class="field" placeholder="Father Name" id="last"></td>
+        <td><input type="number" class="field" id="age"></td>
+        <td><input type="text" class="field" id="gen"></td>
+      </tr>
+</table>
+
+<button id="btn" style="float: right;margin-right: 20%;" onclick="insert()">New User</button>
+<script>
+    function insert(){
+        var cell=[];
+        var fieldLength=[];
+        var table = document.getElementById("mytable");
+        var row = table.insertRow(1);
+        fieldLength=document.getElementsByClassName("field");
+        for(var i=0;i<fieldLength.length;i++){
+            cell[i+1] = row.insertCell(i);
+        }
+        // var cell1 = row.insertCell(0);
+        // var cell2 = row.insertCell(1);
+        // var cell3 = row.insertCell(2);
+        // var cell4 = row.insertCell(3);
+        
+        for(var i=1;i<=fieldLength.length;i++){
+           cell[i].innerHTML = fieldLength[i-1].value;
+           fieldLength[i-1].value="";
+
+        }
+//   cell[1].innerHTML = document.getElementById("name").value;
+//   cell[2].innerHTML = document.getElementById("last").value;
+//   cell[3].innerHTML = document.getElementById("age").value;
+//   cell[4].innerHTML = document.getElementById("gen").value;
+    }
+</script>
+
+
+</body>
+</html>
+
+

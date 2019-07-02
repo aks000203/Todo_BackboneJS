@@ -1,0 +1,19 @@
+<script>
+let range=(a, b)=>{
+  let arr=[];
+  for(let i=a;i<=b;i++){
+    arr.push(i);
+  }
+  return arr;
+};
+let sum=(arr)=>{
+  let sum=0;
+  for(let num of arr){
+    sum+=num;
+  }
+  return sum;
+};
+
+console.log(range(1, 10));
+console.log(sum(range(1, 10)));
+</script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>A basic form with validation using js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        form{
+            text-align: center;
+          
+            
+        }
+        fieldset{
+            margin-left: 35%;
+            margin-right: 35%;
+            background-color: #90EE90;
+        }
+        .formElement{
+            margin: 10px 0 10px 0;
+        }
+        #submit{
+            block-size: 30px;
+        }
+    </style>
+    <script>
+        function valEmail(){
+            let mail=document.myform.email.value;
+            let reg=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(!reg.test(mail)){
+                alert("Incorrect email address!!");
+                document.getElementById("submit").disabled=true;
+            }
+            else{
+                document.getElementById("submit").disabled=false;
+            }
+        }
+
+        function valPass(){
+            let pass=document.myform.password.value;
+            var passRE = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+            if(!pass.match(passRE)){
+                alert("Please enter password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter!");
+                document.getElementById("submit").disabled=true;
+            }
+            else{
+                document.getElementById("submit").disabled=false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="myform" action="abc.html" method="GET">
+        <fieldset>
+            <legend style="font-size: 25px; margin-bottom: 20px;">Personal Information:</legend>
+            <label class="formElement" for="name">Name: </label>
+            <br>
+            <input class="formElement" type="text" name="name" required>
+            <br>
+            <label class="formElement" for="email">Email: </label>
+            <br>
+            <input class="formElement" id ="email" type="text" name="email" onchange="valEmail()" required>
+            <br>
+            <label for="Password" class="formElement">Password: </label>
+            <br>
+            <input id="password" class="formElement" type="password" name="password" onchange="valPass()" required>
+            <BR>
+            <input id="submit" type="submit" name="Submit" value="Submit">
+        </fieldset>
+    </form>
+    
+</body>
+</html>

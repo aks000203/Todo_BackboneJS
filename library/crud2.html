@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table,
+        td {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 100px;
+        }
+
+        input {
+            width: 100px;
+            margin-left: -5px;
+            margin-top: 15px;
+        }
+
+        .temp {
+            margin-left: 0px;
+        }
+    </style>
+    <script>
+         let arrOfData = [];
+        window.onload = function () {
+            document.getElementById("Button").disabled = true;
+        }
+        myObj = {
+            FName: "",
+            LName: "",
+            Age: "",
+            Gender: "",
+            ID: -1
+        };
+        let count = 1;
+        function myFunction() {
+               
+                let table = document.getElementById("myTable");
+                let row = table.insertRow(count);
+                let fields = [];
+                let cell = [];
+                fields = document.getElementsByClassName("field");
+                let len = fields.length;
+                len++;
+                for (let i = 0; i <= len; i++) {
+                    cell[i + 1] = row.insertCell(i);
+                }
+                for (let i = 1; i <= len; i++) {
+                    if (i == len) {
+                        cell[i].innerHTML = "<input type='checkbox' class='checkbox'>";
+                        i++;
+                        cell[i].innerHTML =
+                            " <input type='button' id='update' onclick='selectData(this)' value='Edit' name='update'>";
+                    } else {
+                        cell[i].innerHTML = fields[i - 1].value;
+                        fields[i - 1].value = "";
+                    }
+                }
+                myObj["ID"] = count;
+                count++;
+                arrOfData.push(myObj);
+                Object.keys(myObj).forEach(function (prop) {
+                    myObj[prop] = "";
+                });
+                document.getElementById("Button").disabled = true;
+        }
+
+        function isEmpty(e) {
+            myObj[e.target.id] = e.target.value;
+            let size = Object.keys(myObj).length;
+            size--;
+            let temp = 0;
+            let arr = Object.values(myObj);
+            arr.forEach(element => {
+                if (element != "")
+                    temp++;
+            });
+            if (temp == size) {
+                document.getElementById("Button").disabled = false;
+            }
+        }
+        let selectData = (td) => {
+            let selectedRow = td.parentElement.parentElement;
+            for (let i = 0; i < Object.values(myObj).length; i++) {
+                document.getElementsByClassName("field")[i].value = selectedRow.cells[i].innerHTML;
+                SR=selectedRow;
+                document.getElementById("Button").disabled = true;
+                document.getElementById("updateButton").disabled = false;
+                isUpdating = true;
+                debugger
+            }
+        }
+        let updateData=()=>{
+            for(let i=0;i<Object.values(myObj).length;i++){
+                SR.cells[i].innerHTML=document.getElementsByClassName("field")[i].value;
+                document.getElementsByClassName("field")[i].value="";
+            }
+            Object.keys(myObj).forEach(function (prop) {
+                    myObj[prop] = "";
+                });
+        }
+        let SR;
+    </script>
+</head>
+<body>
+    <table id="myTable">
+        <tr>
+            <td>First Name</td>
+            <td>Middle Name</td>
+            <td>Last Name</td>
+            <td>Age</td>
+            <td>Gender</td>
+            <td>Select</td>
+        </tr>
+    </table>
+    <input onchange="isEmpty(event)" class="temp field" id="FName" placeholder="Enter F.N." required>
+    <input onchange="isEmpty(event)" class="temp field" id="MName" placeholder="Enter M.N." required>
+    <input onchange="isEmpty(event)" class="field" placeholder="Enter L.N." id="LName">
+    <input onchange="isEmpty(event)" class="field" type="number" min=0 oninput="validity.valid||(value='');" id="Age"
+        placeholder="Enter Age">
+    <input onchange="isEmpty(event)" class="field" id="Gender" placeholder="Enter M/F">
+    <button id="Button" onclick="myFunction()">Add</button>
+    <button id="updateButton" onclick="updateData()">Update</button>
+</body>
+</html>

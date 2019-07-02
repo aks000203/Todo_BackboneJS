@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://underscorejs.org/underscore-min.js"></script>
+  <script src="http://backbonejs.org/backbone-min.js"></script>
+  <script>
+
+    // let Chapters=Backbone.Model;
+    // let chapters=new Backbone.Collection;
+    // chapters.comparator='pageNo';
+    // chapters.add(new Chapters({pageNo: 21, title: " Sound-how we hear"}));
+    // chapters.add(new Chapters({pageNo: 5, title: " Light:reflection"}));
+    // chapters.add(new Chapters({pageNo: 14, title: " Light: refraction"}));
+
+    // alert(chapters.pluck("title"));
+
+Backbone.sync = function(method, model) {
+  alert(method + ": " + model.url);
+};
+
+var accounts = new Backbone.Collection;
+accounts.url = '/accounts';
+
+accounts.fetch();
+
+//     var Chapter = Backbone.Model.extend({
+//   validate: function(attrs, options) {
+//     if (attrs.end < attrs.start) {
+//       return "can't end before it starts";
+//     }
+//   }
+// });
+// var one = new Chapter({
+//   title : "Chapter One: The Beginning"
+// });
+// one.on("invalid", function(model, error) {
+//   alert(model.get("title") + " " + error);
+// });
+// one.save({
+//   start: 1,
+//   end:   10
+// });
+ 
+// let collection=new Backbone.Collection([{name:"himanshu", designation: "Supervisor-Advisor-Mentor"},
+//               {name: "Noopur Gupta", designation: "Actual Supervisor"}]);
+//                collection.each(function(person){
+//                  alert(JSON.stringify(person));
+//                });
+//                let titles=collection.map("name");
+//                alert(JSON.stringify(titles));
+
+//                let alpha=collection.sortBy(function(book){
+//                  return book.get('name').toLowerCase();
+//                });
+//                alert(JSON.stringify(alpha)); -->
+
+//     let ships=new Backbone.Collection;
+//     ships.on("add", function(ship){
+//       alert("Alert!! A new ship-- " + ship.get("name") + " is added");
+//     });
+
+//     ships.add([
+//       {name: "The pirates cage", id: 1},
+//       {name: "The carrabien killer", id: 2}
+//     ]);
+
+//     ships.remove(1);
+//     console.log(ships.length);
+//     ships.remove(2);
+//     console.log(ships.length);
+  </script>
+</body>
+
+</html>

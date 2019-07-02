@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HTML JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #header {
+            text-align: center;
+        }
+
+        #inputs {
+            display: inline;
+        }
+
+        #form {
+            margin-left: 40%;
+        }
+
+        #submit {
+            margin-top: 40px;
+            margin-left: 120px;
+        }
+    </style>
+   
+</head>
+
+<body>
+        <script>
+                function doMagic() {
+                    
+                    var c = '';
+                    var w = document.getElementById("header").innerText;
+                    var x = document.getElementById("tag").value;
+                    var y = document.getElementById("times").value;
+                    if(x=="a")
+                        x=x+ " href='#' target='_blank'";
+                    for (var i = 0; i < y; i++) {
+                        c = c + "<" + x + ">" + w + "<" + x + ">" + "<br>";
+                    }
+                    document.getElementById("content").innerHTML = c;
+                }
+            </script>
+    <h1 id="header">Atul Singh</h1>
+        <div id="inputs">
+            <input id="tag" type="text" name="tag" placeholder="Enter tag name.">
+            <input id="times" type="number" name="times" placeholder="Enter number of times.">
+        </div>
+
+        <br>
+        <input type="submit" value="submit" id="submit" onclick="doMagic()">
+    <p id="content">
+</body>
+</html>

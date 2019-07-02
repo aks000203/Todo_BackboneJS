@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Responsive Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        td{
+            float: left;
+            width: 12.5%;
+        }
+        @media  screen and(max-width:450px){
+            td{
+                width: 50%;
+            }
+        }
+        @media screen and(max-width:600px){
+            td{
+                width: 25px;
+            }
+        }
+        
+        table tr td{
+            border: 2px solid black;
+        }
+        table{
+            display: inline-block;
+            border-collapse: collapse;
+        }
+    </style>
+    <script src="main.js"></script>
+</head>
+<body>
+    <table id="table">
+        <tr>
+            <td>Hello</td>
+            <td>Hello</td>
+            <td>Hello</td>
+            <td>Hello</td>
+            <td>Hello</td>
+            <td>Hello</td>
+            <td>Hello</td>
+            <td>Hello</td>
+        </tr>
+    </table>
+</body>
+</html>

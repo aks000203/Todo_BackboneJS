@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+</html>
+
+<head>
+    <title>
+        MULTIPLIER
+    </title>
+    <style>
+        div {
+            display: inline-block;
+            align-content: center;
+            margin-left: 40%;
+            margin-top: 40px;
+
+        }
+
+        .button {
+            background-color: rgb(51, 189, 85);
+            border: none;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+
+        .button {
+            border-radius: 80%;
+        }
+
+        #demo {
+            font-size: 2em;
+        }
+
+        .number {
+            color: red;
+        }
+
+        #sign {
+            color: green;
+        }
+    </style>
+    <script>
+        function table() {
+            var x;
+            let newValue = "";
+            x = document.getElementById("number").value;
+            j = document.getElementById("noOfTimes").value;
+            if (isNaN(x) && isNaN(j)) {
+                alert("invalid input");
+                return false;
+            }
+            for (var i = 1; i <= 5; i++) {
+                for(var k=0;k<=5;k++){
+                    if(k==j){
+                        newValue = newValue + ("<li>" + "<span id="+k+">" + x + "</span>" + "<span id='sign'>" + " * " +
+                        "</span>" + i + " = " + (x * i)) +
+                    "</li>";
+                    }
+
+                    }
+                }
+                
+            }
+            document.getElementById("demo").innerHTML = newValue;
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        Enter the number you want to multiply:
+        <br>
+        <input id="number" type="text" placeholder="number" name="number">
+        <br><br>
+        How many number of times you want to multiply:
+        <br>
+        <input id="noOfTimes" type="text" placeholder="number" name="number">
+        <br><br>
+        <button class="button" type="button" onclick="table()">Submit</button>
+
+    </div>
+    <div id="demo"></div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+        .rounded{
+            margin: 60px;
+            border-radius: 30px;
+            border: 5px solid green;
+            width:60px;
+            height: 70px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function clickcounter(){
+            if(typeof(Storage)!==undefined){
+                if(localStorage.clickcount){
+                    localStorage.clickcount=Number(localStorage.clickcount)+1;
+                }
+                else{
+                    localStorage.clickcount=1;
+                }
+                document.getElementById("result").innerHTML="You have clicked the button " + localStorage.clickcount + " time(s)";
+            }
+            else{
+                document.getElementById("result").innerHTML="Sorry, you don't have support for Local Storage.";
+            }
+        }
+    </script>
+    
+    <button type="button" onclick="clickcounter()">Click here.</button>
+    <br>
+    <div id="result"></div>
+    <div class="rounded"></div>
+
+</body>
+</html>

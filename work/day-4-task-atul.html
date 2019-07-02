@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>AN HTML form</title>
+    <style>
+        #first_fieldset{
+                margin-left: 30px;
+            }
+            #second_fieldset{
+                margin-left: 30px;
+            }
+          
+          .slider{
+            width: 200px;
+          }
+          body{
+            background-color:#e6e6e6;
+            font-size:18px;
+          }
+          #submit{
+              margin: 30px;
+              width:100px;
+              height: 45px;
+          }
+
+        
+        </style>
+
+    <script>
+        function updateValue(val){
+          document.getElementById('budget').value=val;
+        }
+        
+      </script>
+</head>
+
+<body>
+    <h1>Welcome to the car buying guide.</h1>
+    <h2>Please provide the following information to proceed.</h2>
+
+    <form autocomplete="on">
+        <fieldset id="first_fieldset">
+            <legend>Personal information</legend>
+            First Name:<br>
+            <input type="text" name="First-Name" placeholder="eg: Anil" required autofocus><br><br>
+            Last Name:<br>
+            <input type="text" name="Last-Name" placeholder="eg: Singh" required><br><br>
+            Email:<br>
+            <input type="email" name="email" placeholder="eg: aks@impetus.co.in" required><br><br>
+            Age:<br>
+            <Input type="number" min="18" max="80" required>
+            <br><br>
+            Select your gender:<br>
+            <input type="radio" name="Gender" value="male">Male
+            <input type="radio" name="Gender" value="female">Female
+            <input type="radio" name="Gender" value="other">Other
+            <br><br>
+            Enter your city:<br>
+            <input list="cities">
+            <datalist id="cities">
+                <option value="NCR">
+                <option value="Mumbai">
+                <option value="Bangalore">
+                <option value="Hyderabad">
+            </datalist>
+
+        </fieldset>
+
+        <br><br>
+
+        <fieldset id="second_fieldset">
+            <legend>Car information</legend>
+            Please choose a Budget(in lac):<br>
+            <input class="slider" type="range" min="2" max="50" onchange="updateValue(this.value)">
+            <input id="budget" value="" size="2">
+            <br><br>
+            Do you need airbags?<br>
+            <input type="radio" name="airbag" value="yes">Yes
+            <input type="radio" name="airbag" value="no">No
+            <br><br>
+            Maximum persons travelling:
+            <br>
+            <select name="persons" size="5">
+                <option value="4">4</option>
+                <option value="4">5</option>
+                <option value="4">6</option>
+                <option value="4">7</option>
+                <option value="4">8</option>
+            </select>
+            <br><br>
+        </fieldset>
+        <input id="submit" type="submit" value="Show Results">
+    </form>
+</body>
+
+</html>

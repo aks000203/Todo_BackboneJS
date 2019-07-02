@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rotation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @keyframes rotate{
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(359deg);
+            }
+        }
+        @keyframes rotateAnti{
+            from{
+                transform: rotate(359deg);
+            }
+            to{
+                transform: rotate(0deg);
+            }
+        }
+        #inner{
+            animation: rotate 2s infinite linear;
+            margin-left: 470px;
+            position: fixed;
+            margin-top: 340px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            background-color: red;
+            z-index: 1;
+        }
+        #outer{
+            animation: rotateAnti 2s infinite linear;
+            margin-left: 400px;
+            position: fixed;
+            margin-top: 260px;
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            background-color: green;
+            z-index: 0;
+        }
+    </style>
+    <script>
+       function keydownHandler(e){
+            element.style.webkitAnimationPlayState = "paused";
+            if(e.keyCode==13){
+                element.style.webkitAnimationPlayState = "running";
+            }
+        }
+        window.onload=keydownHandler(event);
+    </script>
+</head>
+<body>
+    <div id="inner">
+    </div>
+    <div id="outer"></div>
+</body>
+</html>

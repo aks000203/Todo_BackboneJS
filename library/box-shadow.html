@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jquery</title>
+    <script>
+    let appendTXT=()=>{
+        let elem1="<p>Text1</p>";
+        let elem2=$("<p></p>").text("Text2");
+        let elem3=document.createElement("p");
+        elem3.innerText="Text3";
+        let arr=[1, 3, 5,3];
+        alert($.isArray(arr));
+        $("body").append(elem1, elem2, elem3);
+         }
+        
+    </script>
+    <style>
+        a{
+            position: absolute;
+        }
+        #button{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="button" onclick="appendTXT()">Add my children to the page's body...</button>
+</body>
+
+</html>

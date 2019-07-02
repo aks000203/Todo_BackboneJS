@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Crousel in JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .carousel {
+            position: relative;
+            height: 600px;
+            width: 600px;
+        }
+
+        .slides {
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            font-size: 3em;
+            color: white;
+            line-height: 400px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1000ms;
+        }
+
+        .slide:nth-child(1) {
+            height: 100%;
+            width: 100%;
+            background-color: red;
+            opacity: 1;
+        }
+
+        .slide:nth-child(2) {
+            background-color: green;
+        }
+
+        .slide:nth-child(3) {
+            background-color: blue;
+        }
+
+        .slide[data-state=active] {
+            display: block;
+        }
+
+        .indicators {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .indicator {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var carousel = document.getElementById('carousel');
+        var slides = 3;
+        var speed = 7000; // 5 seconds
+
+        function carouselHide(num) {
+            indicators[num].setAttribute('data-state', '');
+            slides[num].setAttribute('data-state', '');
+
+            slides[num].style.opacity = 0;
+        }
+
+        function carouselShow(num) {
+            indicators[num].checked = true;
+            indicators[num].setAttribute('data-state', 'active');
+            slides[num].setAttribute('data-state', 'active');
+
+            slides[num].style.opacity = 1;
+        }
+
+        function setSlide(slide) {
+            return function () {
+                // Reset all slides
+                for (var i = 0; i < indicators.length; i++) {
+                    indicators[i].setAttribute('data-state', '');
+                    slides[i].setAttribute('data-state', '');
+
+                    carouselHide(i);
+                }
+
+                // Set defined slide as active
+                indicators[slide].setAttribute('data-state', 'active');
+                slides[slide].setAttribute('data-state', 'active');
+                carouselShow(slide);
+
+                // Stop the auto-switcher
+                clearInterval(switcher);
+            };
+        }
+
+        function switchSlide() {
+            var nextSlide = 0;
+
+            // Reset all slides
+            for (var i = 0; i < indicators.length; i++) {
+                // If current slide is active & NOT equal to last slide then increment nextSlide
+                if ((indicators[i].getAttribute('data-state') == 'active') && (i !== (indicators.length - 1))) {
+                    nextSlide = i + 1;
+                }
+
+                // Remove all active states & hide
+                carouselHide(i);
+            }
+
+            // Set next slide as active & show the next slide
+            carouselShow(nextSlide);
+        }
+
+        if (carousel) {
+            var slides = carousel.querySelectorAll('.slide');
+            var indicators = carousel.querySelectorAll('.indicator');
+
+            var switcher = setInterval(function () {
+                switchSlide();
+            }, speed);
+
+            for (var i = 0; i < indicators.length; i++) {
+                indicators[i].addEventListener("click", setSlide(i));
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="carousel" class="carousel">
+        <div class="slides">
+            <div class="slide" data-state="active"><img
+                    src="http://brasilcalibracao.com.br/images/produtos/fiat-500-02.jpg"></div>
+            <div class="slide"><img src="http://brasilcalibracao.com.br/images/produtos/novo-palio-03.jpg"></div>
+            <div class="slide"><img src="http://brasilcalibracao.com.br/images/produtos/fiat-500-03.jpg"></div>
+        </div>
+        <div class="indicators">
+            <input class="indicator" name="indicator" data-slide="1" data-state="active" checked type="radio" />
+            <input class="indicator" name="indicator" data-slide="2" type="radio" />
+            <input class="indicator" name="indicator" data-slide="3" type="radio" />
+        </div>
+    </div>
+</body>
+
+</html>
