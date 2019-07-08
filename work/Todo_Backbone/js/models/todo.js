@@ -1,14 +1,22 @@
-//This is a todo model that is representing individual todo items.
-let app=app || {};
-//There are two values we need for each todo item: The title and whether it is completed or not.
+var app = app || {};
 
-let Todo=Backbone.Model.extend({
-    defaults: {
-        title: '',
-        completed: false
-    },
-    toggle: function(){
+// Todo Model
+// ----------
+// Our basic **Todo** model has `title` and `completed` attributes.
+
+app.Todo = Backbone.Model.extend({
+
+  // Default attributes ensure that each todo created has `title` and `completed` keys.
+  defaults: {
+    title: '',
+    completed: false
+  },
+
+  // Toggle the `completed` state of this todo item.
+  toggle: function() {
     this.save({
-        completed:!this.get('completed')
-    })}
-})
+      completed: !this.get('completed')
+    });
+  }
+
+});
