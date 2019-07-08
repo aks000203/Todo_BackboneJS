@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My First View </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+</head>
+
+<body>
+
+    <script>
+        var button1 = $('<button></button>');
+        var button2 = $('<button></button>');
+
+        // Define a new view
+        var View = Backbone.View.extend({
+            events: {
+                click: function (e) {
+                    console.log(view.el === e.target);
+                }
+            }
+        });
+
+        // Create a new instance of the view, applying it
+        // to button1
+        var view = new View({
+            el: button1
+        });
+
+        // Apply the view to button2 using setElement
+        view.setElement(button2);
+        console.log(view.el);
+        button1.trigger('click');
+       // button2.trigger('click');
+    </script>
+
+  
+
+
+    <!-- <script type="text/template" id="search_template">
+            <label>Search</label>
+            <input type="text" id="search_input" />
+            <input type="button" id="search_button" value="Search" />
+          </script>
+          
+          <div id="search_container"></div>
+          
+          <script type="text/javascript">
+            var SearchView = Backbone.View.extend({
+              initialize: function(){
+                this.render();
+              },
+              render: function(){
+                // Compile the template using underscore
+                var template = _.template( $("#search_template").html(), {} );
+                // Load the compiled HTML into the Backbone "el"
+                this.$el.html( template );
+              },
+              events:{
+                  "click input[type=button]": "doSearch"
+              },
+              doSearch:function(event){
+                  alert("searching for : " + $("#search_input").val());
+              }
+            });
+          
+            var search_view = new SearchView({ el: $("#search_container") });
+          </script> -->
+</body>
+
+</html>

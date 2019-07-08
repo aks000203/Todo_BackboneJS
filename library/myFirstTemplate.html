@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movies List in Backbone</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+</head>
+<body>
+    <div id="divContainer">
+    </div>
+    <script>
+        let Movie = Backbone.Model.extend({
+            defauls:{
+                MovieName: ""
+            }
+        });
+        let MoviesCollection=Backbone.Collection.extend({
+            model: Movie
+        });
+        let MovieView=Backbone.View.extend({
+            tagname: "li",
+            model:Movie,
+            template: '',
+            events:{
+                'click': 'itemClicked'
+            },
+            itemClicked:function(){
+                movieColl.remove(this.model);
+              
+            },
+            initialize:function(){
+                this.template=_.template($("#bookTemplate").html());
+            },
+            render:function(){
+                this.$el.html(this.template(this.model.attributes));
+                return this;
+            }
+        });
+        let MovieListView=Backbone.View.extend({
+            model: MoviesCollection,
+            initialize:function(){
+                this.listenTo(this.model, "remove", this.modelUpdated);
+            },
+            modelUpdated:function(){
+                this.$el.empty();
+                this.render();
+            },
+            render:function(){
+                this.$el.html();
+                for(let i=0;i<this.model.length;++i){
+                    let movie=new MovieView({
+                        model: this.model.at(i)
+                    });
+                    this.$el.append(movie.$el);
+                    movie.render();
+                }
+                return this;
+            }
+        });
+        let movie1=new Movie({
+            ID: 1,
+            MovieName: "Gully Boy"
+        });
+        let movie2=new Movie({
+            ID: 2,
+            MovieName: "The Godfather"
+        });
+        let movie3=new Movie({
+            ID: 3,
+            MovieName: "Goodfellas"
+        });
+        let movieColl=new MoviesCollection([movie1, movie2, movie3]);
+        $(document).ready(function(){
+            let movieList=new MovieListView({
+                model:movieColl,
+                el: $("#divContainer")
+            });
+            movieList.render();
+        });
+    </script>
+    <script type="text/template" id="bookTemplate">
+        <li role="presentation" style="background: #D3D3D3; width: 200px; height: 80px"><a href="#" role="menuitem" tabindex="-1"> <%= MovieName %></a>
+        </li>
+    </script>
+</body>
+</html>

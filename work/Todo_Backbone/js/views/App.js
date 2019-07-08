@@ -31,7 +31,8 @@ app.AppView=Backbone.View.extend({
             this.$footer.html(this.statstemplate({
                 completed: completed,
                 remaining: remaining
-            }))
+            }));
+            
         }
 
     },

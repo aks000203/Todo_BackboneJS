@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movies List in Backbone</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+</head>
+
+<body>
+    <div id="divContainer">
+    </div>
+    <script>
+        let work = Backbone.Router.extend({
+            routes: {
+                'help': 'help',
+                'search/:query': 'search',
+                'todo/:id': 'getTodo',
+                'search/:query/p:page': 'search',
+                'todo/:id/download/*documentpath': 'downloadDocument',
+                '*other': 'defaultRoute',
+                'optional(/:item)': 'optionalitem'
+            },
+            help: function () {
+
+            },
+            search: function (query, page=1) {
+                console.log(`Page number: ${page} of the result of search for ${query}`);
+            },
+            getTodo: function(id){
+                
+                this.navigate(`todo/${id}/edit`);
+            }
+        });
+        
+        let myTodoRouter=new work();
+        Backbone.history.start();
+    </script>
+    <script type="text/template" id="bookTemplate">
+        <li role="presentation" style="background: #D3D3D3; width: 200px; height: 80px"><a href="#" role="menuitem" tabindex="-1"> <%= MovieName %></a>
+        </li>
+    </script>
+</body>
+
+</html>

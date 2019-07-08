@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+</head>
+
+<body>
+    <div id="bookList"></div>
+    <script>
+        let Book = Backbone.Model.extend({});
+        let BooksCollection = Backbone.Collection.extend({
+            model: Book
+        });
+        let bookView = Backbone.View.extend({
+            tagname: 'li',
+            model: Book,
+            render: function () {
+                this.$el.html('<li>' + this.model.get('BookName') + '</li>');
+                return this;
+            }
+        });
+        let bookListView = Backbone.View.extend({
+            model: BooksCollection,
+
+            render: function () {
+                this.$el.html(); //this renders the view
+                for (let i = 0; i < this.model.length; i++) {
+                    //this creates book views to render
+                    let myBookView = new bookView({
+                        model: this.model.at(i)
+                    }); //this sends each model to the bookView so that it can be rendered
+                    this.$el.append(myBookView.$el);
+                    myBookView.render();
+                }
+                return this;
+            }
+        });
+        let book1 = new Book({
+            ID: 1,
+            BookName: "Book 1"
+        });
+        let book2 = new Book({
+            ID: 2,
+            BookName: "Book 2"
+        });
+        let book3 = new Book({
+            ID: 3,
+            BookName: "Book 3"
+        });
+        let book4 = new Book({
+            ID: 4,
+            BookName: "Book 4"
+        });
+        let book5 = new Book({
+            ID: 5,
+            BookName: "Book 5"
+        });
+        let bookCollection = new BooksCollection([book1, book2, book3, book4, book5]);
+        let bookList;
+        $(document).ready(function () {
+            bookList = new bookListView({
+                el: $("#bookList"), model: bookCollection
+            });
+            bookList.render();
+        });
+    </script>
+</body>
+
+</html>
